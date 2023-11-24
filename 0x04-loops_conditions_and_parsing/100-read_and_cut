@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#task 100 maps File path
+file="/etc/passwd"
+while IFS=: read -r username _ uid _ _ home _;
+do
+	echo "$username:$uid:$home"
+done < "$file"
+
