@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 #The regular assignment fizz buzz but it prints 1 - 100
-count=1
-while [ $count -le 100 ]
+
+for num in {1..100}
 do
-	if (( $count % 3 == 0 && $count % 5 == 0 ))
+	if (( num % 3 == 0 && num % 5 == 0 ))
 	then
 		echo "FizzBuzz"
-	elif (( $count % 3 == 0 ))
+	elif (( num % 3 == 0 ))
 	then
 		echo "Fizz"
-	elif (( $count % 5 == 0 ))
+	elif (( num % 5 == 0 ))
 	then
 		echo "Buzz"
 	else
-		echo "$count"
+		echo "$num"
 	fi
-	count=$(( count + 1 ))
 done
