@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 #prints files in the current directory
-for file in *;
+for i in "$(ls)";
 do
-	if [[ -f "$file" && ! "$file" =~ ^\..* ]]
-	then
-		echo "${file#*-}"
-	fi
+	echo "$i" | cut -d "-" -f2
 done

@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
-#this file comfirms status of the file "school"
-file="./school"
-if [ -e "$file" ]
+# This script displays information about the file `school`
+
+if [ -e "school" ]
 then
-	echo "school file exist"
-	if [ -s "$file" ]
+	echo "school file exists"
+	if [ -s "school" ]
 	then
 		echo "school file is not empty"
 	else
 		echo "school file is empty"
 	fi
-	if [ -f "$file" ]
+
+	if [ -f "school" ]
 	then
 		echo "school is a regular file"
 	fi
