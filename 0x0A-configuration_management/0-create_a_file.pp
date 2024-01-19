@@ -1,7 +1,8 @@
-file {'0-create_a_file.pp':
-	path => /tmp/school,
-	group => www-data,
-	owner => www-data,
-	content => "I love Puppet",
-	mode => 0744
+# create file named school in tmp with content and ownership chamge
+file {'/tmp/school':
+	path => file,
+	content => 'I love Puppet',
+	mode => '0744'
+	group => 'www-data',
+	owner => 'www-data'
 }
