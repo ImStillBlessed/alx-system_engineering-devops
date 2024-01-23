@@ -1,3 +1,4 @@
+# This manifest ensures that the SSH client is configured to use a specific private key
 file_line { 'Turn off passwd auth':
   path   => '/etc/ssh/sshd_config',
   line   => 'PasswordAuthentication no',
