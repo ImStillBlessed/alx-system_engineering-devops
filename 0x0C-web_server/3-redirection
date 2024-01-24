@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# configures an Nginx server so that /redirect_me is redirecting to another page
+
+sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://cdn.memes.com/up/33012541656404504/i/1656628035180.jpg permanent;' /etc/nginx/sites-available/default
