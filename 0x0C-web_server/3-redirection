@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # configures an Nginx server so that /redirect_me is redirecting to another page
 
+ADD301_REDIRECT=$'\trewrite ^/redirect_me https://animepahe.ru/anime/40680913-4836-eb87-209a-80a53d8bdb94 permanent;'
+
 sudo apt-get update
 sudo apt-get install -y nginx
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
-sudo service nginx reload
+sudo chown -R ubuntu /var/www
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default
+sudo service nginx restart
