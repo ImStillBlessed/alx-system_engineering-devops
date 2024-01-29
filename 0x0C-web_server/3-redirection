@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 # configures an Nginx server so that /redirect_me is redirecting to another page
 
-ADD301_REDIRECT=$'\trewrite ^/redirect_me https://animepahe.ru/anime/40680913-4836-eb87-209a-80a53d8bdb94 permanent;'
-
 sudo apt-get update
-sudo apt-get install -y nginx
-sudo chown -R ubuntu /var/www
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
 
-# Find the correct line number dynamically
-LINE_NUMBER=$(grep -n 'server {' /etc/nginx/sites-available/default | cut -d: -f1)
-# Insert the redirection directive
-sudo sed -i "${LINE_NUMBER}a $ADD301_REDIRECT" /etc/nginx/sites-available/default
-
-sudo service nginx restart
+sudo mkdir -p /var/www/html
+sudo chmod -R 755 /var/www
+echo 'Hello World!' |sudo tee  /var/www/html/index.html
+string_for_replacement="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me https:\/\/www.blog.ehoneahobed.com permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
