@@ -7,5 +7,10 @@ sudo apt-get update
 sudo apt-get install -y nginx
 sudo chown -R ubuntu /var/www
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo sed -i "301 $ADD301_REDIRECT" /etc/nginx/sites-available/default
+
+# Find the correct line number dynamically
+LINE_NUMBER=$(grep -n 'server {' /etc/nginx/sites-available/default | cut -d: -f1)
+# Insert the redirection directive
+sudo sed -i "${LINE_NUMBER}a $ADD301_REDIRECT" /etc/nginx/sites-available/default
+
 sudo service nginx restart
