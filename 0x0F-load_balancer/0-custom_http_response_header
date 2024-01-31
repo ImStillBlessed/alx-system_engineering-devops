@@ -6,7 +6,7 @@ sudo apt-get update
 sudo apt-get -y install nginx
 
 # configure firewall to allow request through port 80
-sudo ufw allow 'Nginx HTTP'
+# sudo ufw allow 'Nginx HTTP'
 
 sudo mkdir -p /var/www/html
 
