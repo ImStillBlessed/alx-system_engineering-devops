@@ -17,7 +17,7 @@ frontend  Still-frontend
 backend Still-backend
         balance roundrobin
         server 450077-web-01 35.174.208.54:80 check 
-        server 450077-lb-01 54.82.217.209:80 check
+        server 450077-web-02 34.229.72.105:80 check
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
