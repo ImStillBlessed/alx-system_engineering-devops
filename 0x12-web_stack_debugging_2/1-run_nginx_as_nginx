@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Stop Nginx service
+service nginx stop
+
+# Change ownership of Nginx directories to nginx user
+chown -R nginx:nginx /var/log/nginx /var/lib/nginx /etc/nginx
+
+# Modify Nginx configuration to run as nginx user
+sed -i 's/user\s*nginx;/user nginx nginx;/g' /etc/nginx/nginx.conf
+
+# Update Nginx configuration to listen on all active IPs on port 8080
+sed -i 's/listen\s*80;/listen *:8080;/g' /etc/nginx/sites-available/default
+
+# Start Nginx service
+service nginx start
+
+# Verify Nginx process is running as nginx user and listening on port 8080
+ps auxff | grep ngin[x]
+nc -z 0 8080
