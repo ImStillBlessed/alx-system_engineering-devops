@@ -3,15 +3,13 @@
 This module retrieves fake data and displays it USING
 REST API
 """
-
 import sys
-import requests
-
+import urllib.request
 
 if __name__ == '__main__':
     user_id = sys.argv[1]
     url = 'https://jsonplaceholder.typicode.com/todos/1'
 
-    response = requests.get(url)
-    json_data = response.json()
-    print(json_data)
+    with urllib.request.urlopen(url) as response:
+        json_data = response.json()
+        print(json_data)
