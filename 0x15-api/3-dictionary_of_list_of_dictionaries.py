@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This module retrieves fake data from REST API and exports it to JSON format for all employees.
+This module retrieves fake data from REST API and exports it to
+JSON format for all employees.
 """
 import json
 import urllib.request
