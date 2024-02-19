@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module retrieves fake data from REST API and saves it to 
+This module retrieves fake data from REST API and saves it to
 a csv file.
 """
 import csv
@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
         for todo in todos_json:
             status = todo.get('completed')
-            title =  todo.get('title')
+            title = todo.get('title')
             writer.writerow({
                 'id': sys.argv[1],
                 'name': name,
