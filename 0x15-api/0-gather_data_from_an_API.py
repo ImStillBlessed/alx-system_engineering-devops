@@ -1,15 +1,13 @@
 #!/usr/bin/python3
 """
-This module retrieves fake data and displays it USING
-REST API
+This module retrieves fake data from REST API and displays it.
 """
 import json
 import sys
 import urllib.request
 
 if __name__ == '__main__':
-    id = sys.argv[1]
-    url = 'https://jsonplaceholder.typicode.com/users/' + id
+    url = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
 
     user = urllib.request.urlopen(url).read()
     todos = urllib.request.urlopen(url + '/todos').read()
