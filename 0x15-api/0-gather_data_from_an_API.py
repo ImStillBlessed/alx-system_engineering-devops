@@ -2,44 +2,25 @@
 """
 This module retrieves fake data from REST API and displays it.
 """
-import requests
+import json
 import sys
+import urllib.request
 
-def fetch_todo_progress(employee_id):
+if __name__ == '__main__':
+    user_id = sys.argv[1]
     base_url = 'https://jsonplaceholder.typicode.com'
-    user_url = f'{base_url}/users/{employee_id}'
-    todo_url = f'{base_url}/todos?userId={employee_id}'
+    user_url = f'{base_url}/users/{user_id}'
+    todo_url = f'{base_url}/todos?userId={user_id}'
 
-    try:
-        user_response = requests.get(user_url)
-        todo_response = requests.get(todo_url)
-        user_data = user_response.json()
-        todo_data = todo_response.json()
+    user = urllib.request.urlopen(user_url).read()
+    todos = urllib.request.urlopen(todo_url).read()
 
-        if user_response.status_code != 200 or todo_response.status_code != 200:
-            print("Failed to retrieve data. Please check the employee ID and try again.")
-            return
+    user_json = json.loads(user.decode('utf-8'))
+    todos_json = json.loads(todos.decode('utf-8'))
+    name = user_json.get('name')
+    complete = [x for x in todos_json if x.get('completed')]
 
-        employee_name = user_data['name']
-        total_tasks = len(todo_data)
-        completed_tasks = [task['title'] for task in todo_data if task['completed']]
-
-        print(f"Employee {employee_name} is done with tasks({len(completed_tasks)}/{total_tasks}):")
-        for task_title in completed_tasks:
-            print(f"\t{task_title}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
-
-    employee_id = sys.argv[1]
-
-    if not employee_id.isdigit():
-        print("Employee ID must be an integer.")
-        sys.exit(1)
-
-    fetch_todo_progress(employee_id)
+    print(f'Employee {name} is done\
+ with tasks({len(complete)}/{len(todos_json)}):')
+    for task in complete:
+        print(f'\t {task.get("title")}')
