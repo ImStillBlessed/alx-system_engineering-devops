@@ -9,10 +9,13 @@ import sys
 import urllib.request
 
 if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
+    user_id = sys.argv[1]
+    base_url = 'https://jsonplaceholder.typicode.com'
+    user_url = f'{base_url}/users/{user_id}'
+    todo_url = f'{base_url}/todos?userId={user_id}'
 
-    user = urllib.request.urlopen(url).read()
-    todos = urllib.request.urlopen(url + '/todos').read()
+    user = urllib.request.urlopen(user_url).read()
+    todos = urllib.request.urlopen(todo_url).read()
 
     user_json = json.loads(user.decode('utf-8'))
     todos_json = json.loads(todos.decode('utf-8'))
