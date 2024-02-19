@@ -20,7 +20,7 @@ if __name__ == '__main__':
     complete = [x for x in todos_json if x.get('completed')]
     filename = f"{sys.argv[1]}.csv"
 
-    with open(filename, 'w') as file:
+    with open(filename, mode='w', newline='') as file:
         fieldnames = ['id', 'name', 'status', 'title']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
