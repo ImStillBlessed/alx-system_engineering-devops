@@ -12,6 +12,6 @@ if __name__ == '__main__':
     user_id = sys.argv[1]
     url = 'https://jsonplaceholder.typicode.com/todos/1'
 
-    response = requests.get(url, id=user_id)
+    response = requests.get(url)
     json_data = response.json()
     print(json_data)
