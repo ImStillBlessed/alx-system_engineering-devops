@@ -20,4 +20,4 @@ if __name__ == '__main__':
     print(f'Employee {name} is done\
  with tasks({len(complete)}/{len(todos_json)}):')
     for task in complete:
-        print(f'\t {task.get('title')}')
+        print(f'\t {task.get("title")}')
