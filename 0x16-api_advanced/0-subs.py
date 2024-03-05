@@ -7,6 +7,7 @@ If an invalid subreddit is given, the function should return 0.
 import json
 import urllib.request
 
+
 def number_of_subscribers(subreddit):
     """
     this function returns the number of subscribers for an account
@@ -14,7 +15,7 @@ def number_of_subscribers(subreddit):
     """
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {'User-Agent': 'Mozilla/5.0'}
-    
+
     try:
         req = urllib.request.Request(url, headers=headers)
         user_data = urllib.request.urlopen(req).read()
@@ -22,7 +23,7 @@ def number_of_subscribers(subreddit):
         subscribers = json_data['data']['subscribers']
         return subscribers
     except urllib.error.HTTPError as e:
-        if e.code == 404:  # Subreddit not found
+        if e.code == 404:
             return 0
         else:
             print("Error:", e)
